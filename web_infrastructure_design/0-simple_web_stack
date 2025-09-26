@@ -1,0 +1,44 @@
+# 0-simple_web_stack
+
+## Whiteboard Diagram Screenshot
+[Insert your screenshot URL here]
+Example: https://i.imgur.com/your_screenshot.png
+
+## Explanation of the Infrastructure
+
+**Scenario:**  
+A user wants to access www.foobar.com. The browser sends a request which goes through DNS to resolve the domain to the server IP 8.8.8.8.
+
+**Components:**
+- **Domain name (foobar.com)**: Maps to server IP 8.8.8.8 via a www A record.
+- **Server**: Hosts all components of the website.
+- **Web server (Nginx)**: Receives HTTP requests, serves static files, forwards dynamic requests to the application server.
+- **Application server**: Executes backend logic and communicates with the database.
+- **Application files**: Contains the website’s code and resources.
+- **Database (MySQL)**: Stores persistent data like users and posts.
+
+**Communication Flow:**
+1. User types www.foobar.com in the browser.
+2. DNS resolves www.foobar.com to 8.8.8.8.
+3. Browser sends HTTP request to server.
+4. Nginx serves static files or forwards requests to the application server.
+5. Application server may query the MySQL database.
+6. Response is sent back to the user via HTTP/HTTPS over TCP/IP.
+
+**Key Terms:**
+- **Server**: A machine providing services to clients.
+- **Domain name**: Human-readable address that maps to an IP.
+- **www record**: DNS record pointing to the server’s IP.
+- **Web server**: Handles HTTP requests and static content.
+- **Application server**: Runs backend code and business logic.
+- **Database**: Stores and manages persistent data.
+- **Communication**: Browser-server interaction via TCP/IP and HTTP/HTTPS.
+
+**Issues:**
+- **SPOF**: Single server failure takes the website offline.
+- **Downtime for maintenance**: Deploying new code requires restarting services.
+- **Scalability**: Cannot handle high traffic without additional servers or load balancing.
+
+## GitHub Repository
+[Insert your GitHub file link here]
+Example: https://github.com/username/holbertonschool-system_engineering-devops/blob/main/web_infrastructure_design/0-simple_web_stack
