@@ -1,0 +1,34 @@
+# 3-Scale Up: Application Server vs Web Server
+
+## Overview
+
+This diagram shows a web infrastructure where each component is split into its own server. The goal is to improve scalability, availability, and separation of concerns.
+
+## Components
+
+- **Users:** End-users accessing the website.
+- **Load Balancer (HAproxy):** Distributes incoming traffic across multiple web servers. Configured in a cluster for high availability.
+- **Web Servers (Nginx):** Serve static content and forward dynamic requests to application servers.
+- **Application Servers:** Handle backend logic and business rules.
+- **Database (MySQL):** Stores application data. Primary handles writes, replica (optional) handles reads.
+
+## Infrastructure Design
+
+1. Users send requests to the **Load Balancer**.
+2. The Load Balancer distributes traffic to **Web Servers** using round-robin algorithm.
+3. Web Servers forward dynamic requests to **Application Servers**.
+4. Application Servers query the **Database** as needed.
+5. Responses flow back to users through the same path in reverse.
+
+## Benefits of this Design
+
+- **Separation of concerns:** Web, application, and database layers are independent.
+- **Scalability:** Each layer can be scaled horizontally by adding more servers.
+- **High availability:** Load balancer cluster reduces the risk of SPOF.
+- **Flexibility:** Easier maintenance and deployment per layer.
+
+## Notes
+
+- Each server is on its own machine to avoid resource contention.
+- This design provides the foundation for adding security layers (firewalls, HTTPS) and monitoring in future enhancements.
+- SPOFs still exist at the database if only one primary exists; replication can mitigate this.
